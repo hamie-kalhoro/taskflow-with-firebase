@@ -1,0 +1,193 @@
+.calendar-widget {
+    width: 100%;
+}
+
+/* Navigation */
+.calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    padding: 0 8px;
+}
+
+.month-year {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.nav-arrow {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.nav-arrow:hover {
+    background-color: var(--bg-element);
+    color: var(--text-primary);
+}
+
+/* Calendar Grid */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+    margin-bottom: 24px;
+}
+
+.day-name {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    padding: 12px 0;
+    font-weight: 500;
+}
+
+.calendar-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.calendar-day .day-number {
+    font-size: 14px;
+    color: var(--text-secondary);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.calendar-day:hover .day-number {
+    background-color: #3DD9D2;
+    color: #000;
+}
+
+.calendar-day.other-month .day-number {
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
+.calendar-day.other-month:hover .day-number {
+    background: none;
+    color: var(--text-muted);
+}
+
+.calendar-day.today .day-number {
+    background-color: var(--accent-primary);
+    color: white;
+    font-weight: 600;
+}
+
+.calendar-day.today:hover .day-number {
+    background-color: #3DD9D2;
+    color: #000;
+}
+
+.calendar-day.selected .day-number {
+    background-color: #3DD9D2;
+    color: #000;
+    font-weight: 600;
+}
+
+/* Task Dot Indicator */
+.task-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin-top: 4px;
+    position: absolute;
+    bottom: 6px;
+}
+
+/* Date Info Header */
+.date-info-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding: 0 4px;
+}
+
+.selected-date-text {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.task-count-pill {
+    background-color: var(--bg-element);
+    color: var(--text-secondary);
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+/* Mini Task List */
+.selected-tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mini-task-card {
+    background-color: var(--bg-element);
+    padding: 12px 16px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.mini-task-indicator {
+    width: 3px;
+    height: 16px;
+    border-radius: 4px;
+}
+
+.mini-task-indicator.high {
+    background-color: var(--color-high);
+}
+
+.mini-task-indicator.medium {
+    background-color: var(--color-medium);
+}
+
+.mini-task-indicator.low {
+    background-color: var(--color-low);
+}
+
+.mini-task-title {
+    font-size: 13px;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mini-task-empty {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+}
