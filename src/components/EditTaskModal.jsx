@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Calendar, Flag, Tag, ChevronDown, Check } from 'lucide-react';
-import './AddTaskModal.css';
+import './AddTaskModal.css'; // Reusing styles
 import { useTasks } from '../context/TaskContext';
 
-const AddTaskModal = ({ isOpen, onClose }) => {
+const EditTaskModal = ({ isOpen, onClose, task }) => {
     const { dispatch } = useTasks();
     const [showPriorityDropdown, setShowPriorityDropdown] = useState(false);
     const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
@@ -11,12 +11,24 @@ const AddTaskModal = ({ isOpen, onClose }) => {
     const [formData, setFormData] = useState({
         title: '',
         description: '',
-        date: new Date().toISOString().split('T')[0],
+        date: '',
         priority: 'Medium',
-        category: '' // Initially empty for placeholder
+        category: ''
     });
 
-    if (!isOpen) return null;
+    useEffect(() => {
+        if (task) {
+            setFormData({
+                title: task.title,
+                description: task.description || '',
+                date: task.date,
+                priority: task.priority,
+                category: task.category
+            });
+        }
+    }, [task]);
+
+    if (!isOpen || !task) return null;
 
     const priorities = [
         { value: 'High', color: '#E74C3C' },
@@ -35,22 +47,14 @@ const AddTaskModal = ({ isOpen, onClose }) => {
         e.preventDefault();
         if (!formData.title.trim()) return;
 
-        const newTask = {
-            id: Date.now(),
-            ...formData,
-            completed: false
-        };
-
-        dispatch({ type: 'ADD_TASK', payload: newTask });
-
-        // Reset and close
-        setFormData({
-            title: '',
-            description: '',
-            date: new Date().toISOString().split('T')[0],
-            priority: 'Medium',
-            category: ''
+        dispatch({
+            type: 'UPDATE_TASK',
+            payload: {
+                ...task,
+                ...formData
+            }
         });
+
         onClose();
     };
 
@@ -61,7 +65,7 @@ const AddTaskModal = ({ isOpen, onClose }) => {
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-container" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-header">
-                    <h2>Add New Task</h2>
+                    <h2>Edit Task</h2>
                     <button className="close-btn" onClick={onClose}><X size={20} /></button>
                 </div>
 
@@ -100,7 +104,6 @@ const AddTaskModal = ({ isOpen, onClose }) => {
                             </div>
                         </div>
 
-                        {/* Custom Priority Dropdown */}
                         <div className="form-group half">
                             <label>Priority</label>
                             <div className="custom-select-wrapper">
@@ -109,7 +112,7 @@ const AddTaskModal = ({ isOpen, onClose }) => {
                                     className="custom-select-trigger"
                                     onClick={() => { setShowPriorityDropdown(!showPriorityDropdown); setShowCategoryDropdown(false); }}
                                 >
-                                    <span className="select-dot" style={{ backgroundColor: selectedPriority.color }}></span>
+                                    <span className="select-dot" style={{ backgroundColor: selectedPriority?.color }}></span>
                                     <span className="select-value">{formData.priority}</span>
                                     <ChevronDown size={16} className="select-arrow" />
                                 </button>
@@ -133,7 +136,6 @@ const AddTaskModal = ({ isOpen, onClose }) => {
                         </div>
                     </div>
 
-                    {/* Custom Category Dropdown */}
                     <div className="form-group">
                         <label>Category</label>
                         <div className="custom-select-wrapper">
@@ -173,7 +175,7 @@ const AddTaskModal = ({ isOpen, onClose }) => {
 
                     <div className="modal-actions">
                         <button type="button" className="btn-cancel" onClick={onClose}>Cancel</button>
-                        <button type="submit" className="btn-submit">Add Task</button>
+                        <button type="submit" className="btn-submit">Save Changes</button>
                     </div>
                 </form>
             </div>
@@ -181,4 +183,4 @@ const AddTaskModal = ({ isOpen, onClose }) => {
     );
 };
 
-export default AddTaskModal;
+export default EditTaskModal;

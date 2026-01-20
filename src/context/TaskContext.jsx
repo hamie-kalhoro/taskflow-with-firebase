@@ -10,7 +10,7 @@ const initialState = {
             title: 'Complete project proposal',
             description: 'Finish the Q4 project proposal and send for review',
             category: 'Work',
-            date: '2026-01-20', // Normalized date format YYYY-MM-DD
+            date: '2026-01-19', // Past date to test overdue logic
             priority: 'High',
             completed: false
         },

@@ -3,6 +3,7 @@ import { Search, Bell, Moon, Sun, TrendingUp, CheckCircle, Clock, AlertCircle, L
 import TaskItem from './TaskItem';
 import RightPanel from './RightPanel';
 import AddTaskModal from './AddTaskModal';
+import TimeCard from './TimeCard';
 import './MainDashboard.css';
 import { useTasks } from '../context/TaskContext';
 
@@ -15,6 +16,15 @@ const MainDashboard = () => {
     const [priorityFilter, setPriorityFilter] = useState('all');
     const [isDarkMode, setIsDarkMode] = useState(true);
     const [showAddModal, setShowAddModal] = useState(false);
+
+    // Toggle Theme Class
+    React.useEffect(() => {
+        if (!isDarkMode) {
+            document.body.classList.add('light-mode');
+        } else {
+            document.body.classList.remove('light-mode');
+        }
+    }, [isDarkMode]);
 
     let filteredTasks = getFilteredTasks();
 
@@ -130,6 +140,7 @@ const MainDashboard = () => {
                     </div>
                     <div className="stat-icon red"><AlertCircle size={24} /></div>
                 </div>
+                <TimeCard />
             </section>
 
             {/* Main Content Area */}

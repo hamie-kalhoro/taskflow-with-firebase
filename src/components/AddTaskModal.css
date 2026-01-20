@@ -14,11 +14,11 @@
 }
 
 .modal-container {
-    background-color: var(--bg-card);
+    background-color: #24211F;
     width: 100%;
     max-width: 500px;
     border-radius: var(--radius-lg);
-    padding: 32px;
+    padding: 24px 32px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     border: 1px solid var(--border-color);
     animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -66,10 +66,10 @@
 .input-wrapper input,
 .select-wrapper select {
     width: 100%;
-    background-color: var(--bg-element);
+    background-color: #2A2724;
     border: 1px solid var(--border-color);
     color: var(--text-primary);
-    padding: 12px;
+    padding: 9px 12px;
     border-radius: var(--radius-sm);
     font-family: inherit;
     font-size: 14px;
@@ -196,8 +196,8 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 12px;
-    background-color: var(--bg-element);
+    padding: 9px 12px;
+    background-color: #2A2724;
     border: 1px solid var(--border-color);
     border-radius: var(--radius-sm);
     color: var(--text-primary);
@@ -230,6 +230,10 @@
 .select-arrow {
     color: var(--text-muted);
     transition: transform 0.2s;
+}
+
+.placeholder {
+    color: var(--text-muted);
 }
 
 .custom-select-dropdown {

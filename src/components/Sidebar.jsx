@@ -58,59 +58,61 @@ const Sidebar = () => {
                     </button>
                 </div>
 
-                <nav className="nav-menu">
-                    <button
-                        className={`nav-item ${active === 'All Tasks' ? 'active' : ''}`}
-                        onClick={() => handleNavClick('All Tasks')}
-                    >
-                        <LayoutGrid size={20} />
-                        <span className="label">All Tasks</span>
-                        <span className="count-badge active">{countTasks('All Tasks')}</span>
-                    </button>
-                    <button
-                        className={`nav-item ${active === 'Today' ? 'active' : ''}`}
-                        onClick={() => handleNavClick('Today')}
-                    >
-                        <Clock size={20} />
-                        <span className="label">Today</span>
-                        <span className="count-badge">{countTasks('Today')}</span>
-                    </button>
-                    <button
-                        className={`nav-item ${active === 'Upcoming' ? 'active' : ''}`}
-                        onClick={() => handleNavClick('Upcoming')}
-                    >
-                        <Calendar size={20} />
-                        <span className="label">Upcoming</span>
-                        <span className="count-badge">{countTasks('Upcoming')}</span>
-                    </button>
-                    <button
-                        className={`nav-item ${active === 'Completed' ? 'active' : ''}`}
-                        onClick={() => handleNavClick('Completed')}
-                    >
-                        <CheckCircle size={20} />
-                        <span className="label">Completed</span>
-                        <span className="count-badge">{countTasks('Completed')}</span>
-                    </button>
-                </nav>
+                <div className="sidebar-body">
+                    <nav className="nav-menu">
+                        <button
+                            className={`nav-item ${active === 'All Tasks' ? 'active' : ''}`}
+                            onClick={() => handleNavClick('All Tasks')}
+                        >
+                            <LayoutGrid size={20} />
+                            <span className="label">All Tasks</span>
+                            <span className="count-badge active">{countTasks('All Tasks')}</span>
+                        </button>
+                        <button
+                            className={`nav-item ${active === 'Today' ? 'active' : ''}`}
+                            onClick={() => handleNavClick('Today')}
+                        >
+                            <Clock size={20} />
+                            <span className="label">Today</span>
+                            <span className="count-badge">{countTasks('Today')}</span>
+                        </button>
+                        <button
+                            className={`nav-item ${active === 'Upcoming' ? 'active' : ''}`}
+                            onClick={() => handleNavClick('Upcoming')}
+                        >
+                            <Calendar size={20} />
+                            <span className="label">Upcoming</span>
+                            <span className="count-badge">{countTasks('Upcoming')}</span>
+                        </button>
+                        <button
+                            className={`nav-item ${active === 'Completed' ? 'active' : ''}`}
+                            onClick={() => handleNavClick('Completed')}
+                        >
+                            <CheckCircle size={20} />
+                            <span className="label">Completed</span>
+                            <span className="count-badge">{countTasks('Completed')}</span>
+                        </button>
+                    </nav>
 
-                <div className="category-section">
-                    <div className="section-header">
-                        <Tag size={14} />
-                        <span>CATEGORIES</span>
+                    <div className="category-section">
+                        <div className="section-header">
+                            <Tag size={14} />
+                            <span>CATEGORIES</span>
+                        </div>
+                        <ul className="category-list">
+                            {['Work', 'Personal', 'Health', 'Shopping'].map(cat => (
+                                <li
+                                    key={cat}
+                                    className={`category-item ${active === cat ? 'active' : ''}`}
+                                    onClick={() => handleNavClick(cat)}
+                                >
+                                    <span className={`color-dot ${cat.toLowerCase()}`}></span>
+                                    <span className="label">{cat}</span>
+                                    <span className="count">{countTasks(cat)}</span>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
-                    <ul className="category-list">
-                        {['Work', 'Personal', 'Health', 'Shopping'].map(cat => (
-                            <li
-                                key={cat}
-                                className={`category-item ${active === cat ? 'active' : ''}`}
-                                onClick={() => handleNavClick(cat)}
-                            >
-                                <span className={`color-dot ${cat.toLowerCase()}`}></span>
-                                <span className="label">{cat}</span>
-                                <span className="count">{countTasks(cat)}</span>
-                            </li>
-                        ))}
-                    </ul>
                 </div>
 
                 <div className="progress-card">

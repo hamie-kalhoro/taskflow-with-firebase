@@ -1,5 +1,5 @@
 :root {
-  --bg-primary: #0F0F0F;
+  --bg-primary: #1C1917;
   --bg-secondary: #181818;
   --bg-card: #1E1E1E;
   --bg-element: #2A2A2A;
@@ -8,8 +8,8 @@
   --accent-secondary: #FF8C42;
 
   --text-primary: #FFFFFF;
-  --text-secondary: #A0A0A0;
-  --text-muted: #606060;
+  --text-secondary: #A3998F;
+  --text-muted: #A3998F;
 
   --color-work: #FF8C42;
   --color-personal: #8E44AD;
@@ -27,6 +27,20 @@
   --radius-full: 9999px;
 
   --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.light-mode {
+  --bg-primary: #F4F7FE;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-element: #FFF0E5;
+  /* User requested color for active states */
+
+  --text-primary: #2B3674;
+  --text-secondary: #A3AED0;
+  --text-muted: #8F9BBA;
+
+  --border-color: #E0E5F2;
 }
 
 * {

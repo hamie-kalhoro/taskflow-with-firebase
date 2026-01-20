@@ -1,17 +1,13 @@
 .task-item {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 16px 20px;
-    background-color: #262626;
-    /* Slightly lighter than container */
+    background-color: #262320;
     border-radius: 16px;
     margin-bottom: 12px;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    /* For hover effect */
     transition: all 0.2s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    /* Limited shadow as requested */
+    position: relative;
+    overflow: hidden;
 }
 
 .task-item:hover {
@@ -19,6 +15,38 @@
     border-color: #333;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.category-bar {
+    width: 4px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.category-bar.work {
+    background-color: var(--color-work);
+}
+
+.category-bar.personal {
+    background-color: var(--color-personal);
+}
+
+.category-bar.health {
+    background-color: var(--color-health);
+}
+
+.category-bar.shopping {
+    background-color: var(--color-shopping);
+}
+
+.task-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 11px 20px 11px 24px;
+    flex: 1;
 }
 
 .task-left {
@@ -33,7 +61,7 @@
     width: 24px;
     height: 24px;
     cursor: pointer;
-    margin-top: 2px;
+    margin-top: 4px;
 }
 
 .custom-checkbox input {
@@ -89,7 +117,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .task-title {
@@ -130,6 +158,12 @@
     background: rgba(46, 204, 113, 0.1);
 }
 
+.category-badge.shopping {
+    color: var(--color-shopping);
+    border-color: var(--color-shopping);
+    background: rgba(26, 188, 156, 0.1);
+}
+
 .task-desc {
     font-size: 13px;
     color: var(--text-secondary);
@@ -140,6 +174,7 @@
 .task-meta {
     display: flex;
     gap: 16px;
+    flex-wrap: wrap;
 }
 
 .meta-item {
@@ -147,34 +182,66 @@
     align-items: center;
     gap: 6px;
     font-size: 12px;
-    color: var(--text-grey);
+    color: var(--text-secondary);
 }
 
 .meta-item.priority.high {
-    color: var(--color-high);
+    color: var(--color-medium);
+    /* High is orange-ish in the image */
 }
 
 .meta-item.priority.medium {
-    color: var(--color-medium);
+    color: #F1C40F;
 }
 
-.meta-item.priority.low {
-    color: var(--color-low);
+.meta-item.overdue-indicator {
+    color: var(--color-high);
+    font-weight: 500;
 }
 
-/* Actions */
+.overdue .meta-item:first-child span {
+    color: var(--color-high);
+}
+
+/* Actions - Hidden by default, shown on hover */
 .task-actions {
-    color: var(--text-muted);
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    margin-top: -4px;
+}
+
+.task-item:hover .task-actions {
+    opacity: 1;
 }
 
 .icon-btn {
-    padding: 8px;
+    padding: 6px;
     color: var(--text-muted);
-    border-radius: 50%;
-    transition: background 0.2s;
+    background: transparent;
+    border-radius: 8px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .icon-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
     color: var(--text-primary);
+}
+
+.icon-btn.delete:hover {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: #E74C3C;
+}
+
+.meta-item.overdue-indicator,
+.overdue .meta-item:first-child {
+    color: #FF4D4D !important;
+}
+
+.overdue .meta-item:first-child svg {
+    color: #FF4D4D;
 }

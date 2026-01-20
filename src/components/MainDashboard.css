@@ -35,28 +35,41 @@
 
 .nav-search {
     flex: 1;
-    max-width: 600px;
+    max-width: 500px;
     position: relative;
     margin: 0 20px;
 }
 
 .nav-search input {
     width: 100%;
-    padding: 14px 14px 14px 52px;
-    background-color: #262626;
-    /* Darker card-like background */
-    border: 1px solid transparent;
-    border-radius: 100px;
-    /* Full pill shape */
+    /* height: 48px; */
+    padding: 9px 14px 9px 52px;
+    background-color: #292623;
+    /* Darker background for dark theme */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Subtle default border */
+    border-radius: 12px;
+    /* Not fully rounded */
     color: var(--text-primary);
     font-size: 15px;
     transition: all 0.2s;
 }
 
-.nav-search input:focus {
+.light-mode .nav-search input {
+    background-color: var(--bg-card);
+    border-color: var(--border-color);
+}
+
+.nav-search input:focus,
+.nav-search input:not(:placeholder-shown) {
     outline: none;
-    background-color: #252525;
     border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(249, 118, 31, 0.1);
+}
+
+.nav-search input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.8;
 }
 
 .nav-search .search-icon {
@@ -104,20 +117,23 @@
 /* Stats Row */
 .stats-row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 16px;
     margin-bottom: 24px;
 }
 
 .stat-card {
-    background-color: var(--bg-card);
-    padding: 16px 20px;
+    background-color: #25211F;
+    padding: 11px 16px;
+    /* Slightly reduced horizontal padding for 5 cards */
     border-radius: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: default;
+    min-width: 0;
+    /* Allow shrinking */
 }
 
 .stat-card:hover {
@@ -129,31 +145,42 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    min-width: 0;
 }
 
 .stat-label {
     font-size: 13px;
     color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .stat-value {
-    font-size: 36px;
+    font-size: 32px;
+    /* Reduced from 36px for 5 cards */
     font-weight: 700;
     color: var(--text-primary);
+    white-space: nowrap;
 }
 
 .stat-sub {
     font-size: 12px;
     color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .stat-icon {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    /* Slightly reduced */
+    height: 44px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .stat-icon.orange {
@@ -176,6 +203,11 @@
     color: var(--color-high);
 }
 
+.stat-icon.purple {
+    background: rgba(139, 92, 246, 0.15);
+    color: #8B5CF6;
+}
+
 /* Main Content Area */
 .main-content {
     display: grid;
@@ -189,7 +221,7 @@
 }
 
 .tasks-container {
-    background-color: var(--bg-card);
+    background-color: #25211F;
     padding: 20px;
     border-radius: var(--radius-lg);
     min-height: 100%;
@@ -222,9 +254,9 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 16px;
+    padding: 6px 16px;
     /* Slightly tighter padding */
-    background-color: #1E1E1E !important;
+    background-color: #25211F !important;
     /* Force darker background */
     border: 1px solid rgba(255, 255, 255, 0.08);
     /* Subtle border */
