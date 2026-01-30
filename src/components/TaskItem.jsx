@@ -5,17 +5,17 @@ import { useTasks } from '../context/TaskContext';
 import EditTaskModal from './EditTaskModal';
 
 const TaskItem = ({ task }) => {
-    const { dispatch } = useTasks();
+    const { toggleTask, deleteTask, dispatch } = useTasks();
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-    const handleToggle = () => {
-        dispatch({ type: 'TOGGLE_TASK', payload: task.id });
+    const handleToggle = async () => {
+        await toggleTask(task.id, task.completed);
     };
 
-    const handleDelete = (e) => {
+    const handleDelete = async (e) => {
         e.stopPropagation();
         if (window.confirm('Delete this task?')) {
-            dispatch({ type: 'DELETE_TASK', payload: task.id });
+            await deleteTask(task.id);
         }
     }
 

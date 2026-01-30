@@ -4,7 +4,7 @@ import './AddTaskModal.css'; // Reusing styles
 import { useTasks } from '../context/TaskContext';
 
 const EditTaskModal = ({ isOpen, onClose, task }) => {
-    const { dispatch } = useTasks();
+    const { editTask } = useTasks();
     const [showPriorityDropdown, setShowPriorityDropdown] = useState(false);
     const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
 
@@ -43,16 +43,12 @@ const EditTaskModal = ({ isOpen, onClose, task }) => {
         { value: 'Shopping', color: '#1ABC9C' }
     ];
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!formData.title.trim()) return;
 
-        dispatch({
-            type: 'UPDATE_TASK',
-            payload: {
-                ...task,
-                ...formData
-            }
+        await editTask(task.id, {
+            ...formData
         });
 
         onClose();

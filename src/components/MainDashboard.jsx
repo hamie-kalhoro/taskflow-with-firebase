@@ -4,27 +4,24 @@ import TaskItem from './TaskItem';
 import RightPanel from './RightPanel';
 import AddTaskModal from './AddTaskModal';
 import TimeCard from './TimeCard';
+import ProfileDropdown from './ProfileDropdown';
 import './MainDashboard.css';
 import { useTasks } from '../context/TaskContext';
+import { useTheme } from '../context/ThemeContext';
+import { useAuth } from '../hooks/useAuth';
 
 const MainDashboard = () => {
     const { state, getFilteredTasks, dispatch } = useTasks();
+    const { theme, toggleTheme } = useTheme();
+    const { user } = useAuth();
     const [sortBy, setSortBy] = useState('date');
     const [sortOrder, setSortOrder] = useState('asc');
     const [showSortMenu, setShowSortMenu] = useState(false);
     const [showFilterMenu, setShowFilterMenu] = useState(false);
     const [priorityFilter, setPriorityFilter] = useState('all');
-    const [isDarkMode, setIsDarkMode] = useState(true);
     const [showAddModal, setShowAddModal] = useState(false);
 
-    // Toggle Theme Class
-    React.useEffect(() => {
-        if (!isDarkMode) {
-            document.body.classList.add('light-mode');
-        } else {
-            document.body.classList.remove('light-mode');
-        }
-    }, [isDarkMode]);
+    const isDarkMode = theme === 'dark';
 
     let filteredTasks = getFilteredTasks();
 
@@ -64,6 +61,7 @@ const MainDashboard = () => {
     // Get time-based greeting
     const hour = new Date().getHours();
     const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
+    const displayName = user?.displayName?.split(' ')[0] || user?.email?.split('@')[0] || 'there';
 
     const handlePriorityFilter = (priority) => {
         setPriorityFilter(priority);
@@ -75,7 +73,7 @@ const MainDashboard = () => {
             {/* Top Navbar */}
             <header className="top-navbar">
                 <div className="nav-greeting">
-                    <h1>{greeting}, Alex</h1>
+                    <h1>{greeting}, {displayName}</h1>
                     <p>You have <span className="highlight">{dueToday}</span> tasks due today</p>
                 </div>
 
@@ -92,7 +90,7 @@ const MainDashboard = () => {
                 <div className="nav-actions">
                     <button
                         className="nav-icon-btn"
-                        onClick={() => setIsDarkMode(!isDarkMode)}
+                        onClick={toggleTheme}
                         title={isDarkMode ? 'Light Mode' : 'Dark Mode'}
                     >
                         {isDarkMode ? <Moon size={20} /> : <Sun size={20} />}
@@ -100,9 +98,7 @@ const MainDashboard = () => {
                     <button className="nav-icon-btn" title="Notifications">
                         <Bell size={20} />
                     </button>
-                    <div className="nav-avatar">
-                        <img src="https://i.pravatar.cc/100?img=5" alt="User" />
-                    </div>
+                    <ProfileDropdown />
                 </div>
             </header>
 

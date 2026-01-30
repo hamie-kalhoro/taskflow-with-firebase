@@ -1,11 +1,15 @@
 .sidebar {
-    background-color: #262220;
+    background-color: var(--bg-secondary);
     padding: 20px;
     display: flex;
     flex-direction: column;
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    border-right: 1px solid var(--border-color);
     height: 100vh;
     box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .sidebar-header {
@@ -85,8 +89,8 @@
     border-radius: 10px;
 }
 
-.sidebar-body:hover::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
+.sidebar:hover .sidebar-body::-webkit-scrollbar-thumb {
+    background: var(--bg-hover);
 }
 
 .nav-menu {
@@ -109,12 +113,12 @@
 }
 
 .nav-item:hover {
-    background-color: rgba(255, 255, 255, 0.03);
+    background-color: var(--bg-hover);
     color: var(--text-primary);
 }
 
 .nav-item.active {
-    background-color: rgba(255, 112, 32, 0.08);
+    background-color: var(--accent-light);
     color: var(--accent-primary);
 }
 
@@ -127,7 +131,7 @@
 .count-badge {
     font-size: 12px;
     font-weight: 700;
-    background-color: #332F2D;
+    background-color: var(--bg-element);
     padding: 2px 10px;
     border-radius: 99px;
     color: var(--text-primary);
@@ -141,7 +145,7 @@
 /* Category Section */
 .category-section {
     padding-top: 24px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid var(--border-color);
 }
 
 .section-header {
@@ -172,12 +176,12 @@
 }
 
 .category-item:hover {
-    background-color: rgba(255, 255, 255, 0.03);
+    background-color: var(--bg-hover);
     color: var(--text-primary);
 }
 
 .category-item.active {
-    background-color: rgba(255, 112, 32, 0.08);
+    background-color: var(--accent-light);
     color: var(--accent-primary);
 }
 
@@ -217,8 +221,8 @@
 
 /* Progress Card */
 .progress-card {
-    background-color: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: var(--bg-hover);
+    border: 1px solid var(--border-color);
     padding: 18px;
     border-radius: 16px;
     margin-top: auto;
@@ -244,7 +248,7 @@
 
 .progress-track {
     height: 6px;
-    background-color: #332F2D;
+    background-color: var(--bg-element);
     border-radius: 99px;
     margin-bottom: 10px;
 }

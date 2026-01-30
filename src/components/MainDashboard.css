@@ -2,6 +2,7 @@
     min-height: 100vh;
     background-color: var(--bg-primary);
     padding: 20px 24px;
+    transition: background-color 0.3s ease;
 }
 
 /* Top Navbar */
@@ -12,8 +13,14 @@
     margin-bottom: 24px;
     padding: 12px 20px;
     gap: 20px;
-    background-color: #211E1B;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
+    position: sticky;
+    top: 20px;
+    z-index: 100;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
 }
 
 .nav-greeting h1 {
@@ -42,34 +49,25 @@
 
 .nav-search input {
     width: 100%;
-    /* height: 48px; */
     padding: 9px 14px 9px 52px;
-    background-color: #292623;
-    /* Darker background for dark theme */
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    /* Subtle default border */
+    background-color: var(--bg-element);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
-    /* Not fully rounded */
     color: var(--text-primary);
     font-size: 15px;
     transition: all 0.2s;
-}
-
-.light-mode .nav-search input {
-    background-color: var(--bg-card);
-    border-color: var(--border-color);
 }
 
 .nav-search input:focus,
 .nav-search input:not(:placeholder-shown) {
     outline: none;
     border-color: var(--accent-primary);
-    box-shadow: 0 0 0 3px rgba(249, 118, 31, 0.1);
+    box-shadow: 0 0 0 3px var(--accent-light);
+    background-color: var(--bg-card);
 }
 
 .nav-search input::placeholder {
-    color: var(--text-secondary);
-    opacity: 0.8;
+    color: var(--text-muted);
 }
 
 .nav-search .search-icon {
@@ -102,7 +100,7 @@
 }
 
 .nav-icon-btn:hover {
-    background-color: var(--bg-element);
+    background-color: var(--bg-hover);
     color: var(--text-primary);
 }
 
@@ -123,22 +121,22 @@
 }
 
 .stat-card {
-    background-color: #25211F;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
     padding: 11px 16px;
-    /* Slightly reduced horizontal padding for 5 cards */
     border-radius: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: default;
     min-width: 0;
-    /* Allow shrinking */
 }
 
 .stat-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent-light);
 }
 
 .stat-info {
@@ -158,7 +156,6 @@
 
 .stat-value {
     font-size: 32px;
-    /* Reduced from 36px for 5 cards */
     font-weight: 700;
     color: var(--text-primary);
     white-space: nowrap;
@@ -174,7 +171,6 @@
 
 .stat-icon {
     width: 44px;
-    /* Slightly reduced */
     height: 44px;
     border-radius: 50%;
     display: flex;
@@ -184,28 +180,23 @@
 }
 
 .stat-icon.orange {
-    background: rgba(249, 118, 31, 0.15);
+    background: rgba(249, 118, 31, 0.12);
     color: var(--accent-primary);
 }
 
 .stat-icon.green {
-    background: rgba(46, 204, 113, 0.15);
-    color: var(--color-health);
+    background: rgba(46, 204, 113, 0.12);
+    color: #2ECC71;
 }
 
 .stat-icon.yellow {
-    background: rgba(241, 196, 15, 0.15);
-    color: var(--color-medium);
+    background: rgba(241, 196, 15, 0.12);
+    color: #F1C40F;
 }
 
 .stat-icon.red {
-    background: rgba(231, 76, 60, 0.15);
-    color: var(--color-high);
-}
-
-.stat-icon.purple {
-    background: rgba(139, 92, 246, 0.15);
-    color: #8B5CF6;
+    background: rgba(231, 76, 60, 0.12);
+    color: #E74C3C;
 }
 
 /* Main Content Area */
@@ -221,10 +212,12 @@
 }
 
 .tasks-container {
-    background-color: #25211F;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
     padding: 20px;
     border-radius: var(--radius-lg);
     min-height: 100%;
+    transition: all 0.3s ease;
 }
 
 .tasks-header {
@@ -238,6 +231,7 @@
     font-size: 22px;
     font-weight: 600;
     margin-bottom: 4px;
+    color: var(--text-primary);
 }
 
 .task-count-sub {
@@ -255,13 +249,9 @@
     align-items: center;
     gap: 8px;
     padding: 6px 16px;
-    /* Slightly tighter padding */
-    background-color: #25211F !important;
-    /* Force darker background */
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    /* Subtle border */
+    background-color: var(--bg-element) !important;
+    border: 1px solid var(--border-color);
     border-radius: 12px !important;
-    /* More rounded */
     color: var(--text-secondary);
     font-size: 14px;
     font-weight: 500;
@@ -269,12 +259,13 @@
 }
 
 .control-btn:hover {
-    background-color: #333;
+    background-color: var(--bg-hover) !important;
     color: var(--text-primary);
+    border-color: var(--text-muted);
 }
 
 .control-btn.active {
-    background-color: var(--accent-primary);
+    background-color: var(--accent-primary) !important;
     border-color: var(--accent-primary);
     color: white;
 }
@@ -298,7 +289,7 @@
     min-width: 180px;
     padding: 8px;
     z-index: 100;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--shadow-md);
     animation: dropdownFade 0.15s ease-out;
 }
 
@@ -333,22 +324,22 @@
     font-size: 14px;
     border-radius: var(--radius-sm);
     transition: all 0.15s;
+    background: none;
 }
 
 .dropdown-item:hover {
-    background-color: var(--bg-element);
+    background-color: var(--bg-hover);
     color: var(--text-primary);
 }
 
 .dropdown-item.selected {
-    background-color: #3DD9D2;
-    color: #000;
+    background-color: var(--accent-light);
+    color: var(--accent-primary);
     font-weight: 500;
 }
 
 .dropdown-item.selected:hover {
-    background-color: #3DD9D2;
-    color: #000;
+    background-color: var(--accent-light);
 }
 
 .sort-menu {
@@ -362,16 +353,6 @@
     margin: 8px 0;
 }
 
-.dropdown-item.toggle-item {
-    color: var(--text-secondary);
-    background: none;
-}
-
-.dropdown-item.toggle-item:hover {
-    background-color: var(--bg-element);
-    color: var(--text-primary);
-}
-
 .priority-dot {
     width: 8px;
     height: 8px;
@@ -379,15 +360,15 @@
 }
 
 .priority-dot.high {
-    background-color: var(--color-high);
+    background-color: #E74C3C;
 }
 
 .priority-dot.medium {
-    background-color: var(--color-medium);
+    background-color: #F1C40F;
 }
 
 .priority-dot.low {
-    background-color: var(--color-low);
+    background-color: #2ECC71;
 }
 
 /* Task Groups */
@@ -428,14 +409,13 @@
 .empty-icon-container {
     width: 90px;
     height: 90px;
-    background: rgba(249, 118, 31, 0.1);
+    background: var(--accent-light);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 8px;
     color: var(--accent-primary);
-    box-shadow: 0 0 30px rgba(249, 118, 31, 0.1);
 }
 
 .empty-state.styled h3 {

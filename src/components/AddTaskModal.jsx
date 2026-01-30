@@ -4,7 +4,7 @@ import './AddTaskModal.css';
 import { useTasks } from '../context/TaskContext';
 
 const AddTaskModal = ({ isOpen, onClose }) => {
-    const { dispatch } = useTasks();
+    const { addTask } = useTasks();
     const [showPriorityDropdown, setShowPriorityDropdown] = useState(false);
     const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
 
@@ -31,17 +31,17 @@ const AddTaskModal = ({ isOpen, onClose }) => {
         { value: 'Shopping', color: '#1ABC9C' }
     ];
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!formData.title.trim()) return;
 
         const newTask = {
-            id: Date.now(),
+            id: Date.now(), // Temporary ID, Firestore will replace it but we strip it in context
             ...formData,
             completed: false
         };
 
-        dispatch({ type: 'ADD_TASK', payload: newTask });
+        await addTask(newTask);
 
         // Reset and close
         setFormData({

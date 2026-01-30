@@ -1,47 +1,4 @@
-:root {
-  --bg-primary: #1C1917;
-  --bg-secondary: #181818;
-  --bg-card: #1E1E1E;
-  --bg-element: #2A2A2A;
-
-  --accent-primary: #F9761F;
-  --accent-secondary: #FF8C42;
-
-  --text-primary: #FFFFFF;
-  --text-secondary: #A3998F;
-  --text-muted: #A3998F;
-
-  --color-work: #FF8C42;
-  --color-personal: #8E44AD;
-  --color-health: #2ECC71;
-  --color-shopping: #1ABC9C;
-  --color-high: #E74C3C;
-  --color-medium: #F1C40F;
-  --color-low: #2ECC71;
-
-  --border-color: #2D2D2D;
-
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-full: 9999px;
-
-  --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
-.light-mode {
-  --bg-primary: #F4F7FE;
-  --bg-secondary: #FFFFFF;
-  --bg-card: #FFFFFF;
-  --bg-element: #FFF0E5;
-  /* User requested color for active states */
-
-  --text-primary: #2B3674;
-  --text-secondary: #A3AED0;
-  --text-muted: #8F9BBA;
-
-  --border-color: #E0E5F2;
-}
+@import './theme.css';
 
 * {
   box-sizing: border-box;
@@ -50,13 +7,13 @@
 }
 
 body {
-  font-family: var(--font-family);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
-  /* overflow: hidden; Removed to allow scrolling */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #root {
@@ -91,10 +48,10 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #444;
+  background: var(--bg-element);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--text-secondary);
 }

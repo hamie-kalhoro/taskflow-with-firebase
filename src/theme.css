@@ -1,0 +1,58 @@
+/* Light Mode Theme */
+:root {
+    /* Dark Mode (Default) */
+    --bg-primary: #1C1917;
+    --bg-secondary: #262220;
+    /* Sidebar */
+    --bg-card: #2C2825;
+    --bg-element: #332F2D;
+    --bg-hover: rgba(255, 255, 255, 0.05);
+
+    --accent-primary: #F9761F;
+    --accent-secondary: #FF8C42;
+    --accent-light: rgba(249, 118, 31, 0.15);
+    /* For active/hover states */
+
+    --text-primary: #FFFFFF;
+    --text-secondary: #A3998F;
+    --text-muted: #6B6661;
+
+    --border-color: rgba(255, 255, 255, 0.08);
+    /* Subtle border */
+    --border-active: rgba(249, 118, 31, 0.5);
+    /* Active border */
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.light-mode {
+    /* Light Mode Palette - Warm, Modern, Premium */
+    --bg-primary: #FBF7F4;
+    /* Very light warm gray/cream */
+    --bg-secondary: #FFFFFF;
+    /* Sidebar */
+    --bg-card: #FFFFFF;
+    --bg-element: #F3ECE7;
+    /* Inputs, backgrounds inside cards */
+    --bg-hover: rgba(0, 0, 0, 0.04);
+
+    --accent-primary: #F9761F;
+    --accent-secondary: #E06514;
+    /* Slightly darker for contrast on light */
+    --accent-light: rgba(249, 118, 31, 0.12);
+
+    --text-primary: #2D2A26;
+    /* Soft black */
+    --text-secondary: #6B6661;
+    /* Dark gray */
+    --text-muted: #9E968F;
+    /* Light gray */
+
+    --border-color: #EBE5E0;
+    /* Light warm border */
+    --border-active: rgba(249, 118, 31, 0.4);
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
